@@ -54,6 +54,12 @@ public class ViewFuncionario extends javax.swing.JFrame {
         llenarSexo();
         llenarCiudad();
         limpiar();
+        // TODO: Bug delete
+        // borrarFuncionario();
+
+        // TODO: Bug update
+
+        // actualizarFuncionario();
         txtidestadocivil.setVisible(false);
         txtidsexo.setVisible(false);
         txtidciudad.setVisible(false);
@@ -347,7 +353,7 @@ public class ViewFuncionario extends javax.swing.JFrame {
     }// GEN-LAST:event_tblfuncionariosMouseClicked
 
     private void btnsalirMousePressed(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_btnsalirMousePressed
-        // TODO add your handling code here:
+
         if (evt.getClickCount() == 1) {
             int resp = JOptionPane.showConfirmDialog(null, "¿Esta seguro?", "Alerta!", JOptionPane.YES_NO_OPTION);
             if (resp == 0)
@@ -356,18 +362,18 @@ public class ViewFuncionario extends javax.swing.JFrame {
     }// GEN-LAST:event_btnsalirMousePressed
 
     private void btncancelarActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btncancelarActionPerformed
-        // TODO add your handling code here:
+
         limpiar();
     }// GEN-LAST:event_btncancelarActionPerformed
 
     private void jDateFNMousePressed(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_jDateFNMousePressed
-        // TODO add your handling code here:
+
         System.out.println("Fecha = " + jDateFN.getDate());
         System.out.println("Fecha2 = " + jDateFN.getDate().getTime());
     }// GEN-LAST:event_jDateFNMousePressed
 
     private void jDateFNInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {// GEN-FIRST:event_jDateFNInputMethodTextChanged
-        // TODO add your handling code here:
+
         System.out.println("Fecha = " + jDateFN.getDate());
         System.out.println("Fecha2 = " + jDateFN.getDate().getTime());
     }// GEN-LAST:event_jDateFNInputMethodTextChanged
@@ -747,14 +753,16 @@ public class ViewFuncionario extends javax.swing.JFrame {
         try {
             Funcionario objfuncionario = recuperarFuncionario();
             String id = objfuncionario.getIdfuncionario();
+            System.out.println("Usuario" + id);
             funcionarioController.eliminarFuncionario(id);
             this.mostrarDatosTabla();
             this.limpiar();
             JOptionPane.showMessageDialog(null, "Funcionario eliminado correctamente");
         } catch (HeadlessException e) {
-            System.out.println("Error al borar registro " + e);
+            System.out.println("Error al borrar el registro " + e);
         } catch (SQLException ex) {
-            Logger.getLogger(ViewFuncionario.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ViewFuncionario.class.getName()).log(Level.SEVERE, null,
+                    ex);
         } finally {
             int CLOSE_CURSORS_AT_COMMIT = ResultSet.CLOSE_CURSORS_AT_COMMIT;
             System.out.println("ResultSet cerrado " + CLOSE_CURSORS_AT_COMMIT);
